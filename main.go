@@ -1,21 +1,27 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/golobby/container/v2"
 	"golang-container-to-wire.com/pkg/adapter"
 	"golang-container-to-wire.com/pkg/implements"
 )
 
 func main() {
+	// log := Container()
+	log := Wire()
+
+	log.Info("Hello World")
+}
+
+func Container() implements.Logger {
 	adapter.Register()
 
-	var environment implements.Environment
-	container.Bind(&environment)
+	var logger implements.Logger
+	container.Bind(&logger)
 
-	// var environment implements.Environment
-	// environment = adapter.Init()
+	return logger
+}
 
-	fmt.Println(environment.ServerAddress())
+func Wire() implements.Logger {
+	return adapter.CreateLogger()
 }

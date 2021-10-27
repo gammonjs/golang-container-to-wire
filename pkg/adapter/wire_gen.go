@@ -7,12 +7,19 @@
 package adapter
 
 import (
+	"golang-container-to-wire.com/pkg/adapter/logrus"
 	"golang-container-to-wire.com/pkg/adapter/viper"
 )
 
 // Injectors from wire.go:
 
-func Init() viper.Viper {
-	viperViper := viper.NewEnvironment()
+func CreateEnvironment() viper.Viper {
+	viperViper := viper.CreateAdapter()
 	return viperViper
+}
+
+func CreateLogger() logrus.Logrus {
+	viperViper := viper.CreateAdapter()
+	logrusLogrus := logrus.CreateAdapter(viperViper)
+	return logrusLogrus
 }

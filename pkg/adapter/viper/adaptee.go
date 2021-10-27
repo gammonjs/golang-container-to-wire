@@ -19,7 +19,7 @@ func (v Viper) ServerPort() string {
 	return fmt.Sprintf("%s", adaptee.Get("port"))
 }
 
-func NewEnvironment() Viper {
+func CreateAdapter() Viper {
 	adaptee.SetConfigName("local")  // name of config file (without extension)
 	adaptee.SetConfigType("yaml")   // REQUIRED if the config file does not have the extension in the name
 	adaptee.AddConfigPath("../env") // path to look for the config file in
